@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donut Dodge</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <div id="ui-layer">
+            <div id="score-board">Score: <span id="score">0</span></div>
+            <div id="health-board">Health: <span id="health">100</span>%</div>
+            <div id="boss-health-container" style="display: none;">
+                <div class="boss-name">MOCHINUT</div>
+                <div id="boss-health-bar">
+                    <div id="boss-health-fill"></div>
+                </div>
+            </div>
+            <div id="start-screen" class="screen">
+                <h1>DONUT DODGE</h1>
+                <p>WASD / Arrows to Move</p>
+                <p>SPACE to Shoot Frosting</p>
+                <button id="start-btn">START RUN</button>
+            </div>
+            <div id="game-over-screen" class="screen" style="display: none;">
+                <h1>GAME OVER</h1>
+                <p>You got frosted!</p>
+                <button class="restart-btn">TRY AGAIN</button>
+            </div>
+            <div id="victory-screen" class="screen" style="display: none;">
+                <h1>VICTORY!</h1>
+                <p>Mochinut is defeated!</p>
+                <button class="restart-btn">PLAY AGAIN</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
