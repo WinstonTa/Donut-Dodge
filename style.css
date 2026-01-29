@@ -18,9 +18,8 @@ body {
 
 #game-container {
     position: relative;
-    width: 800px; /* Base resolution, can be responsive */
-    height: 450px;
-    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    width: 100vw;
+    height: 100vh;
     background: #333;
 }
 

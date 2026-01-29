@@ -5,13 +5,45 @@ document.addEventListener('DOMContentLoaded', () => {
         const ctx = canvas.getContext('2d');
 
         // Game Constants
-        const GAME_WIDTH = 800;
-        const GAME_HEIGHT = 450;
+        // Game Constants
+        let GAME_WIDTH = window.innerWidth;
+        let GAME_HEIGHT = window.innerHeight;
         const GRAVITY = 0.6;
-        const GROUND_Y = 380; // Player runs on this line
+        let GROUND_Y = GAME_HEIGHT - 70; // Player runs on this line
 
-        canvas.width = GAME_WIDTH;
-        canvas.height = GAME_HEIGHT;
+        // Global Entities
+        let player;
+        let bg;
+        let enemies = [];
+        let enemyProjectiles = [];
+        let boss;
+
+        function resize() {
+            GAME_WIDTH = window.innerWidth;
+            GAME_HEIGHT = window.innerHeight;
+            canvas.width = GAME_WIDTH;
+            canvas.height = GAME_HEIGHT;
+            GROUND_Y = GAME_HEIGHT - 70;
+
+            // Update entities if they exist
+            if (player && player.grounded) {
+                player.y = GROUND_Y - player.height;
+            }
+            if (boss) {
+                boss.targetX = GAME_WIDTH - 200;
+                // Keep boss aligned with ground
+                if (boss.state !== 'IDLE' && boss.state !== 'ATTACK') {
+                    // If moving or inactive, force snap to ground y
+                    boss.y = GROUND_Y - boss.height - 20;
+                }
+            }
+            if (bg) {
+                bg.width = GAME_WIDTH;
+            }
+        }
+
+        window.addEventListener('resize', resize);
+        resize(); // Initial call
 
         // Asset Loading
         const assets = {
@@ -311,12 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Global Entities
-        let player;
-        let bg;
-        let enemies = [];
-        let enemyProjectiles = [];
-        let boss;
+        // Global Entities (Moved to top)
         let loopId;
 
         function init() {
